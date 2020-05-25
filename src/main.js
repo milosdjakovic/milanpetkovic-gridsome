@@ -10,11 +10,15 @@ export default function (Vue, { router, head, isClient, appOptions }) {
 
   appOptions.store = new Vuex.Store({
     state: {
-      lang: 'rs'
+      lang: 'rs',
+      mobileMenuHidden: true
     },
     mutations: {
       setLanguage (state, lang) {
         state.lang = lang
+      },
+      toggleMobileMenu(state) {
+        state.mobileMenuHidden = !state.mobileMenuHidden
       }
     }
   })

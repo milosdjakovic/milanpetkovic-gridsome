@@ -7,6 +7,10 @@
       <nav class="nav">
         <g-link class="nav__link" to="/">Home</g-link>
         <g-link class="nav__link" to="/discography/">Discography</g-link>
+        <g-link class="nav__link" to="/events/">Events</g-link>
+        <g-link class="nav__link" to="/media/">Media</g-link>
+        <g-link class="nav__link" to="/publications/">Publications</g-link>
+        <g-link class="nav__link" to="/biography/">Biography</g-link>
       </nav>
       <div>
         <button @click="() => setLanguage('en')">EN</button>

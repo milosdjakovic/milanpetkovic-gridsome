@@ -4,6 +4,12 @@
 
     <div v-for="album in $page.allDiscography.edges" :key="album.node.cover">
       <p>{{ album.node[lang].title }}</p>
+      <p>{{ album.node[lang].year }}</p>
+      <div>
+        <p v-for="song in album.node[lang].songs" :key="song">
+          {{ song }}
+        </p>
+      </div>
     </div>
   </Layout>
 </template>
