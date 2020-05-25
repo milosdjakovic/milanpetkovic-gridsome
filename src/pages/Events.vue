@@ -1,6 +1,9 @@
 <template>
   <Layout>
-    <h1>Events</h1>
+    <h1 v-for="(pageData, i) in $page.allSiteData.edges" :key="`${pageData}_${i}`">
+      {{ pageData.node.pages.events.title[lang] }}
+    </h1>
+
     <div v-for="event in $page.allEvents.edges" :key="`${event.node.date}_ ${event.node.time}`">
       <p>{{ event.node.place }}</p>
       <p>{{ event.node.date }}</p>
@@ -38,6 +41,20 @@ query {
         place
         town
         link
+      }
+    }
+  }
+  allSiteData {
+    edges {
+      node {
+        pages {
+          events {
+            title {
+              rs
+              en
+            }
+          }
+        }
       }
     }
   }

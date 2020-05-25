@@ -6,5 +6,8 @@
 
 module.exports = {
   siteName: 'Milan Petković',
-  plugins: []
+  plugins: [],
+  chainWebpack: config => {
+    config.resolve.alias.set('@omoti', '@/assets/omoti')
+  },
 }

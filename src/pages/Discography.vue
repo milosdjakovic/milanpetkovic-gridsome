@@ -1,6 +1,8 @@
 <template>
   <Layout>
-    <h1>Discography</h1>
+    <h1 v-for="(pageData, i) in $page.allSiteData.edges" :key="`${pageData}_${i}`">
+      {{ pageData.node.pages.discography.title[lang] }}
+    </h1>
 
     <div v-for="album in $page.allDiscography.edges" :key="album.node.cover">
       <p>{{ album.node[lang].title }}</p>
@@ -43,6 +45,20 @@ query {
           title
           year
           songs
+        }
+      }
+    }
+  }
+  allSiteData {
+    edges {
+      node {
+        pages {
+          discography {
+            title {
+              en
+              rs
+            }
+          }
         }
       }
     }

@@ -1,6 +1,6 @@
 <template>
   <Layout>
-    <div v-for="biography in $page.allBiography.edges" :key="biography.node[lang].title">
+    <div v-for="biography in $page.biography.edges" :key="biography.node[lang].title">
       <h1>{{ biography.node[lang].title }}</h1>
 
       <div>
@@ -27,7 +27,7 @@ export default {
 
 <page-query>
 query {
-  allBiography {
+  biography: allBiography {
     edges {
       node {
         rs {

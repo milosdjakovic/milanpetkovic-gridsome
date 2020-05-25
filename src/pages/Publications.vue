@@ -1,8 +1,8 @@
 <template>
   <Layout>
-    <div v-for="publication in $page.allPublications.edges" :key="publication.node[lang.title]">
+    <div v-for="publication in $page.publications.edges" :key="publication.node[lang.title]">
       <h1>{{ publication.node[lang].title }}</h1>
-      
+
       <div v-for="article in publication.node.articles" :key="article.link">
         <p>{{ article.title }}</p>
         <p>{{ article.source }}</p>
@@ -27,7 +27,7 @@ export default {
 
 <page-query>
 query {
-  allPublications {
+  publications: allPublications {
     edges {
       node {
         rs {
