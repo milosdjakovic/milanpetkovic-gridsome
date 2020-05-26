@@ -4,8 +4,6 @@
       {{ pageData.node.pages.discography.title[lang] }}
     </h1>
 
-    <AlbumOverlay/>
-
     <Album
       v-for="album in $page.allDiscography.edges" 
       :key="album.node.cover"
@@ -19,7 +17,6 @@
 <script>
 import { mapState, mapMutations } from 'vuex';
 import Album from '../components/Album.vue'
-import AlbumOverlay from '../components/AlbumOverlay.vue'
 
 export default {
   metaInfo: {
@@ -27,7 +24,6 @@ export default {
   },
   components: {
     Album,
-    AlbumOverlay
   },
   computed: {
     ...mapState(['lang'])

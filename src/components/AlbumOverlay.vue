@@ -29,12 +29,12 @@
       </button>
 
       <div class="flex flex-col-reverse px-8 mt-4 overflow-y-auto md:mt-6 md:flex-row">
-        <div class="mt-6 md:mt-0">
+        <div class="mt-8 md:mt-0">
           <p class="text-lg font-bold">{{selectedAlbum[lang].title}}</p>
     
           <p class="text-sm opacity-75 text-fluo-green">{{selectedAlbum[lang].year}}</p>
     
-          <ol class="mt-2 ml-4 list-decimal">
+          <ol class="mt-6 ml-4 list-decimal">
             <li 
             v-for="song in selectedAlbum[lang].songs" 
             :key="`${selectedAlbum[lang].title}_${song}`"

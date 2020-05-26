@@ -1,5 +1,8 @@
 <template>
-  <footer style="background-image: url(/images/wall4.png);">
+  <footer 
+    class="fixed inset-0 z-10 flex flex-col items-center justify-center"
+    style="background-image: url(/images/wall4.png);"
+  >
     <svg version="1.0" xmlns="http://www.w3.org/2000/svg" class="h-40" viewBox="0 0 696.731 684">
       <path
         d="M298.783.9c-.3.6-.8 6.5-1 13.3-.8 20.1-1.6 31.2-2.5 32.3-.4.5-1.9

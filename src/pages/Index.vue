@@ -1,8 +1,6 @@
 <template>
   <Layout >
     <div v-for="({ node }, i) in $page.allSiteData.edges" :key="`home_data_${i}`">
-      <AlbumOverlay />
-
       <!-- Latest release -->
       <div>
         <h2>{{ node.pages.home.release.subtitle[lang] }}</h2>
@@ -86,15 +84,13 @@
 <script>
 import { mapState, mapMutations } from 'vuex';
 import Album from '../components/Album.vue'
-import AlbumOverlay from '../components/AlbumOverlay.vue'
 
 export default {
   metaInfo: {
     title: 'Home'
   },
   components: {
-    Album,
-    AlbumOverlay
+    Album
   },
   data: () => ({
     upcomingEvents: [],
