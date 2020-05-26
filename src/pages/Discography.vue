@@ -4,38 +4,36 @@
       {{ pageData.node.pages.discography.title[lang] }}
     </h1>
 
+    <AlbumOverlay/>
+
     <Album
       v-for="album in $page.allDiscography.edges" 
       :key="album.node.cover"
       :cover="album.node.cover"
       :title="album.node[lang].title"
+      @click="() => setAlbum(album.node)"
     />
-
-    <!-- <div v-for="album in $page.allDiscography.edges" :key="album.node.cover">
-      <p>{{ album.node[lang].title }}</p>
-      <p>{{ album.node[lang].year }}</p>
-      <div>
-        <p v-for="song in album.node[lang].songs" :key="song">
-          {{ song }}
-        </p>
-      </div>
-    </div> -->
   </Layout>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 import Album from '../components/Album.vue'
+import AlbumOverlay from '../components/AlbumOverlay.vue'
 
 export default {
   metaInfo: {
     title: 'Discography'
   },
   components: {
-    Album
+    Album,
+    AlbumOverlay
   },
   computed: {
     ...mapState(['lang'])
+  },
+  methods: {
+    ...mapMutations(['setAlbum'])
   }
 }
 </script>

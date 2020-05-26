@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @click="$emit('click')">
     <g-image 
       :alt="`${cover}`" 
       :src="require(`!!assets-loader!@omoti/${cover}.jpg`)" 
@@ -15,7 +15,3 @@ export default {
   props: ['cover', 'title']
 }
 </script>
-
-<style>
-
-</style>

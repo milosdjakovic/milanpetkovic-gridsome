@@ -33,7 +33,7 @@ query {
   publications: allPublications {
     edges {
       node {
-        rs {di
+        rs {
           title
           titleLatest
         }

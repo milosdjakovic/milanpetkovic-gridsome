@@ -1,37 +1,84 @@
 <template>
   <Layout>
-    <h1 v-for="(pageData, i) in $page.allSiteData.edges" :key="`${pageData}_${i}`">
-      {{ pageData.node.pages.events.title[lang] }}
-    </h1>
-
-    <a 
-      v-for="event in $page.allEvents.edges" 
-      :key="`${event.node.date}_${event.node.time}`"
-      :href="event.node.link"
+    <div
+      v-for="(pageData, i) in $page.allSiteData.edges"
+      :key="`${pageData}_${i}`"
     >
-      <p>{{ event.node.place }}</p>
-      <p>{{ event.node.date }} - {{ event.node.time }}</p>
-      <p>{{ event.node.town }}</p>
-    </a>
+      <h1>{{ pageData.node.pages.events.title[lang] }}</h1>
+  
+      <div v-if="upcomingEvents.length > 0" >
+        <h2>{{ pageData.node.pages.events.upcoming[lang] }}</h2>
+  
+        <a 
+          v-for="event in upcomingEvents"
+          :key="`${ event.date }_${ event.time }`"
+          href=""
+        >
+          <p>{{ event.place }}</p>
+          <p>{{ event.town }}</p>
+          <p>{{ new Date(`${event.date}T${event.time}Z`).toLocaleDateString(localeLang, dateOptions) }}</p>
+        </a>
+      </div>
+  
+      <div v-else>
+        <h2>{{ pageData.node.pages.events.noEvents[lang] }}</h2>
+      </div>
+
+      <div>
+        <h2>{{ pageData.node.pages.events.past[lang] }}</h2>
+
+        <a 
+          v-for="event in pastEvents"
+          :key="`${ event.date }_${ event.time }`"
+          href=""
+        >
+          <p>{{ event.place }}</p>
+          <p>{{ event.town }}</p>
+          <p>{{ new Date(`${event.date}T${event.time}Z`).toLocaleDateString(localeLang, dateOptions) }}</p>
+        </a>
+      </div>
+    </div>
   </Layout>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState } from "vuex";
 
 export default {
   metaInfo: {
-    title: 'Events'
+    title: "Events",
   },
+  data: () => ({
+    upcomingEvents: [],
+    pastEvents: [],
+    dateOptions: {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    },
+  }),
   computed: {
-    ...mapState(['lang'])
-  }
-}
+    ...mapState(["lang"]),
+    localeLang() {
+      if (this.lang === "rs") {
+        return "sr-Latn";
+      }
+
+      return "en";
+    },
+  },
+  created() {
+    this.$page.allEvents.edges.forEach((event) => {
+      if (new Date(`${event.node.date}T${event.node.time}Z`) > Date.now()) {
+        this.upcomingEvents.push(event.node);
+      } else {
+        this.pastEvents.push(event.node);
+      }
+    });
+  },
+};
 </script>
-
-<style>
-
-</style>
 
 <page-query>
 query {
@@ -52,6 +99,18 @@ query {
         pages {
           events {
             title {
+              rs
+              en
+            }
+            upcoming {
+              rs
+              en
+            }
+            past {
+              rs
+              en
+            }
+            noEvents {
               rs
               en
             }

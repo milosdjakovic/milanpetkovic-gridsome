@@ -1,6 +1,8 @@
 <template>
   <Layout >
     <div v-for="({ node }, i) in $page.allSiteData.edges" :key="`home_data_${i}`">
+      <AlbumOverlay />
+
       <!-- Latest release -->
       <div>
         <h2>{{ node.pages.home.release.subtitle[lang] }}</h2>
@@ -9,6 +11,7 @@
           :key="`home_latest_release_${i}`"
           :cover="album.node.cover"
           :title="album.node[lang].title"
+          @click="() => setAlbum(album.node)"
         />
 
         <g-link to="/discography">{{ node.pages.home.release.text[lang] }}</g-link>
@@ -16,8 +19,23 @@
 
       <!-- Upcoming events -->
       <div>
-        <h2>{{ node.pages.home.event.subtitle[lang] }}</h2>
-        <h2>{{ node.pages.home.event.noEvent[lang] }}</h2>
+        <div v-if="upcomingEvents.length > 0" >
+          <h2>{{ node.pages.home.event.subtitle[lang] }}</h2>
+    
+          <a 
+            v-for="event in upcomingEvents"
+            :key="`${ event.date }_${ event.time }`"
+            href=""
+          >
+            <p>{{ event.place }}</p>
+            <p>{{ event.town }}</p>
+            <p>{{ new Date(`${event.date}T${event.time}Z`).toLocaleDateString(localeLang, dateOptions) }}</p>
+          </a>
+        </div>
+  
+        <div v-else>
+          <h2>{{ node.pages.home.event.noEvent[lang] }}</h2>
+        </div>
   
         <g-link to="/events">{{ node.pages.home.event.text[lang] }}</g-link>
       </div>
@@ -52,6 +70,7 @@
         <g-link to="/media">{{ node.pages.home.video.text[lang] }}</g-link>
       </div>
 
+      <!-- Latest publication -->
       <div v-for="(publication, i) in $page.allPublications.edges" :key="`home_article_${i}`">
         <h2>{{ publication.node[lang].titleLatest }}</h2>
 
@@ -61,26 +80,51 @@
         </a>
       </div>
     </div>
-
-    <!-- Latest publication -->
-    <!-- <g-image alt="Example image" src="~/favicon.png" width="135" /> -->
   </Layout>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 import Album from '../components/Album.vue'
+import AlbumOverlay from '../components/AlbumOverlay.vue'
 
 export default {
   metaInfo: {
     title: 'Home'
   },
   components: {
-    Album
+    Album,
+    AlbumOverlay
   },
+  data: () => ({
+    upcomingEvents: [],
+    dateOptions: {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }
+  }),
   computed: {
-    ...mapState(['lang'])
-  }
+    ...mapState(['lang']),
+    localeLang() {
+      if (this.lang === "rs") {
+        return "sr-Latn";
+      }
+
+      return "en";
+    },
+  },
+  methods: {
+    ...mapMutations(['setAlbum'])
+  },
+  created() {
+    this.$page.allEvents.edges.forEach((event) => {
+      if (new Date(`${event.node.date}T${event.node.time}Z`) > Date.now()) {
+        this.upcomingEvents.push(event.node);
+      }
+    });
+  },
 }
 </script>
 
@@ -173,6 +217,17 @@ query {
           source
           link
         }
+      }
+    }
+  }
+  allEvents {
+    edges {
+      node {
+        date
+        time
+        place
+        town
+        link
       }
     }
   }

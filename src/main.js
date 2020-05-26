@@ -11,7 +11,8 @@ export default function (Vue, { router, head, isClient, appOptions }) {
   appOptions.store = new Vuex.Store({
     state: {
       lang: 'rs',
-      mobileMenuHidden: true
+      mobileMenuHidden: true,
+      selectedAlbum: null
     },
     mutations: {
       setLanguage (state, lang) {
@@ -19,6 +20,9 @@ export default function (Vue, { router, head, isClient, appOptions }) {
       },
       toggleMobileMenu(state) {
         state.mobileMenuHidden = !state.mobileMenuHidden
+      },
+      setAlbum(state, album) {
+        state.selectedAlbum = album
       }
     }
   })
