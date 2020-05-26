@@ -4,7 +4,14 @@
       {{ pageData.node.pages.discography.title[lang] }}
     </h1>
 
-    <div v-for="album in $page.allDiscography.edges" :key="album.node.cover">
+    <Album
+      v-for="album in $page.allDiscography.edges" 
+      :key="album.node.cover"
+      :cover="album.node.cover"
+      :title="album.node[lang].title"
+    />
+
+    <!-- <div v-for="album in $page.allDiscography.edges" :key="album.node.cover">
       <p>{{ album.node[lang].title }}</p>
       <p>{{ album.node[lang].year }}</p>
       <div>
@@ -12,16 +19,20 @@
           {{ song }}
         </p>
       </div>
-    </div>
+    </div> -->
   </Layout>
 </template>
 
 <script>
 import { mapState } from 'vuex';
+import Album from '../components/Album.vue'
 
 export default {
   metaInfo: {
     title: 'Discography'
+  },
+  components: {
+    Album
   },
   computed: {
     ...mapState(['lang'])
@@ -31,7 +42,7 @@ export default {
 
 <page-query>
 query {
-  allDiscography {
+  allDiscography(order: ASC) {
     edges {
       node {
         cover

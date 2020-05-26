@@ -4,6 +4,8 @@
       <h1>{{ biography.node[lang].title }}</h1>
 
       <div>
+        <g-image src="~/assets/images/milan_profile.jpg" alt="milan petkovic performing" />
+
         <p v-for="(paragraph, i) in biography.node[lang].content" :key="`bio_para_${i}`">
           {{paragraph}}
         </p>

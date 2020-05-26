@@ -3,11 +3,14 @@
     <div v-for="publication in $page.publications.edges" :key="publication.node[lang.title]">
       <h1>{{ publication.node[lang].title }}</h1>
 
-      <div v-for="article in publication.node.articles" :key="article.link">
+      <a 
+        v-for="article in publication.node.articles" 
+        :key="article.link"
+        :href="article.link"
+      >
         <p>{{ article.title }}</p>
         <p>{{ article.source }}</p>
-        <p>{{ article.link }}</p>
-      </div>
+      </a>
     </div>
   </Layout>
 </template>
@@ -30,7 +33,7 @@ query {
   publications: allPublications {
     edges {
       node {
-        rs {
+        rs {di
           title
           titleLatest
         }

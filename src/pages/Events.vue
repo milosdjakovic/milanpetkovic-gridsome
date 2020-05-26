@@ -4,13 +4,15 @@
       {{ pageData.node.pages.events.title[lang] }}
     </h1>
 
-    <div v-for="event in $page.allEvents.edges" :key="`${event.node.date}_ ${event.node.time}`">
+    <a 
+      v-for="event in $page.allEvents.edges" 
+      :key="`${event.node.date}_${event.node.time}`"
+      :href="event.node.link"
+    >
       <p>{{ event.node.place }}</p>
-      <p>{{ event.node.date }}</p>
-      <p>{{ event.node.time }}</p>
+      <p>{{ event.node.date }} - {{ event.node.time }}</p>
       <p>{{ event.node.town }}</p>
-      <p>{{ event.node.link }}</p>
-    </div>
+    </a>
   </Layout>
 </template>
 

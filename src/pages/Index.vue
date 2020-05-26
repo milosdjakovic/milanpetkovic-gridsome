@@ -10,13 +10,6 @@
           :cover="album.node.cover"
           :title="album.node[lang].title"
         />
-        <!-- <g-image 
-          v-for="(album, i) in $page.allDiscography.edges" 
-          :key="`home_latest_release_${i}`"
-          :alt="`${album.node.cover}`" 
-          :src="require(`!!assets-loader!@omoti/${album.node.cover}.jpg`)" 
-          width="150" 
-        /> -->
 
         <g-link to="/discography">{{ node.pages.home.release.text[lang] }}</g-link>
       </div>
@@ -39,6 +32,10 @@
           v-for="(video, i) in $page.allVideos.edges"
           :key="`home_video_${i}`"
         >
+          <p>
+            {{ video.node.title[lang] }}
+          </p>
+          
           <iframe
             :title="video.node.title[lang]"
             width="560"
@@ -50,9 +47,6 @@
             picture-in-picture"
             allowfullscreen 
           />
-          {{ video.node.title[lang] }}
-          {{ video.node.link }}
-  
         </div>
         
         <g-link to="/media">{{ node.pages.home.video.text[lang] }}</g-link>
