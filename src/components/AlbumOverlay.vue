@@ -1,7 +1,7 @@
 <template>
   <div 
     v-if="selectedAlbum" 
-    class="fixed inset-0 flex items-center justify-center bg-white bg-gray-900 bg-opacity-75"
+    class="fixed inset-0 z-40 flex items-center justify-center bg-white bg-gray-900 bg-opacity-75"
     @click="() => setAlbum(null)"
   >
     <div 
