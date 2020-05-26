@@ -1,17 +1,17 @@
 <template>
   <div 
     v-if="selectedAlbum" 
-    class="fixed inset-0 flex items-center justify-center bg-white bg-gray-900 bg-opacity-50"
+    class="fixed inset-0 flex items-center justify-center bg-white bg-gray-900 bg-opacity-75"
     @click="() => setAlbum(null)"
   >
     <div 
-      class="px-8 py-10 rounded"
+      class="flex flex-col max-h-screen pt-4 pb-8 rounded-md shadow-lg md:pb-12 md:pt-6"
       style="background-image: url(/images/dark_leather.png);"
       @click.stop
     >
       <button
         @click="() => setAlbum(null)"
-        class="w-8 h-8 focus:outline-none"
+        class="self-end w-8 h-8 mx-8 focus:outline-none hover:text-fluo-green"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -28,19 +28,13 @@
         </svg>
       </button>
 
-      <div>
-        <g-image 
-          :alt="`${selectedAlbum.cover}`" 
-          :src="require(`!!assets-loader!@omoti/${selectedAlbum.cover}.jpg`)" 
-          width="150" 
-        />
-
-        <div>
-          <p>{{selectedAlbum[lang].title}}</p>
+      <div class="flex flex-col-reverse px-8 mt-4 overflow-y-auto md:mt-6 md:flex-row">
+        <div class="mt-6 md:mt-0">
+          <p class="text-lg font-bold">{{selectedAlbum[lang].title}}</p>
     
-          <p>{{selectedAlbum[lang].year}}</p>
+          <p class="text-sm opacity-75 text-fluo-green">{{selectedAlbum[lang].year}}</p>
     
-          <ol>
+          <ol class="mt-2 ml-4 list-decimal">
             <li 
             v-for="song in selectedAlbum[lang].songs" 
             :key="`${selectedAlbum[lang].title}_${song}`"
@@ -49,6 +43,12 @@
             </li>
           </ol>
         </div>
+        
+        <g-image 
+          :alt="`${selectedAlbum.cover}`" 
+          :src="require(`!!assets-loader!@omoti/${selectedAlbum.cover}.jpg`)" 
+          class="m-0 md:ml-12"
+        />
       </div>
     </div>
   </div>
