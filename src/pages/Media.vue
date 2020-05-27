@@ -1,13 +1,9 @@
 <template>
   <Layout>
     <div v-for="(video, i) in $page.lastVideo.edges" :key="`media_video_${i}`">
-      <p v-if="currentVideo.title">{{ currentVideo.title[lang] }}</p>
-      <p v-else>{{ video.node.title[lang] }}</p>
+      <h1 class="text-2xl">{{ currentVideo.title[lang] }}</h1>
 
-      <div
-        class="relative mt-2"
-        style="width: 100%; height: 0; padding-bottom: 56.25%;"
-      >
+      <div class="relative mt-4" style="width: 100%; height: 0; padding-bottom: 56.25%;">
         <iframe
           title="test"
           width="560"
@@ -17,56 +13,61 @@
           frameborder="0"
           allow="accelerometer; autoplay; encrypted-media; gyroscope;
           picture-in-picture"
-          allowfullscreen 
+          allowfullscreen
         />
       </div>
     </div>
 
-    <button 
-      v-for="(video, i) in $page.allVideos.edges"
-      :key="`media_video_button_${i}`"
-      @click="currentVideo = {title: video.node.title, link: video.node.link}"
+    <h3 
+      v-for="(playlistTitle, i) in $page.allSiteData.edges"
+      :key="`media_playlist_title_${i}`"
+      class="mt-8 text-lg font-semibold"
+      style="margin-left: calc(24px + 0.5rem)"
     >
-      {{ video.node.title[lang] }}
-    </button>
-    <!-- <div
-      class="relative mt-2"
-      style="width: 100%; height: 0; padding-bottom: 56.25%;"
-      v-for="(video, i) in $page.allVideos.edges"
-      :key="`media_video_${i}`"
-    >
-      <p>
-        {{ video }}
-        {{ video.node.title[lang] }}
-      </p>
-      
-      <iframe
-        :title="video.node.title[lang]"
-        width="560"
-        height="315"
-        class="absolute top-0 left-0 w-full h-full"
-        :src="video.node.link"
-        frameborder="0"
-        allow="accelerometer; autoplay; encrypted-media; gyroscope;
-        picture-in-picture"
-        allowfullscreen 
-      />
-    </div> -->
+      {{ playlistTitle.node.pages.media.playlist[lang] }}:
+    </h3>
 
-    <!-- <div v-for="video in $page.allVideos.edges" :key="video.node.title[lang]">
-      <h1>{{ video.node.title[lang] }}</h1>
+    <ul class="mt-4">
+      <li v-for="(video, i) in $page.allVideos.edges" :key="`media_video_button_${i}`">
+        <button
+          :class="currentVideo.title[lang] === video.node.title[lang] && 'text-fluo-green font-semibold'"
+          class="flex py-1 focus:outline-none"
+          @click="currentVideo = {title: video.node.title, link: video.node.link}"
+        >
+          <svg
+            v-if="currentVideo.title[lang] === video.node.title[lang]"
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-volume"
+            width="24"
+            height="24"
+            stroke-width="2"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M0 0h24v24H0z" stroke="none" />
+            <path
+              d="M15 8a5 5 0 010 8M17.7 5a9 9 0 010 14M6 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h2l3.5-4.5A.8.8 0 0111 5v14a.8.8 0 01-1.5.5L6 15"
+            />
+          </svg>
 
-      <p>{{video.node.link}}</p>
-    </div> -->
+          <span
+            class="ml-2"
+            :style="currentVideo.title[lang] !== video.node.title[lang] && 'margin-left: calc(24px + 0.5rem)'"
+          >{{ video.node.title[lang] }}</span>
+        </button>
+      </li>
+    </ul>
   </Layout>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState } from "vuex";
 
 export default {
   metaInfo: {
-    title: 'Discography'
+    title: "Discography"
   },
   data: () => ({
     currentVideo: {
@@ -75,14 +76,20 @@ export default {
     }
   }),
   computed: {
-    ...mapState(['lang']),
+    ...mapState(["lang"])
+  },
+  created() {
+    this.$page.lastVideo.edges.forEach(video => {
+      this.currentVideo.title = video.node.title;
+      this.currentVideo.link = video.node.link;
+    });
   }
-}
+};
 </script>
 
 <page-query>
 query {
-  allVideos {
+  allVideos(order: ASC) {
     edges {
       node {
         title {
@@ -101,6 +108,20 @@ query {
           en
         }
         link
+      }
+    }
+  }
+  allSiteData {
+    edges {
+      node {
+        pages {
+          media {
+            playlist {
+              rs
+              en
+            }
+          }
+        }
       }
     }
   }
