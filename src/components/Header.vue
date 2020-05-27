@@ -23,13 +23,13 @@
 
     <div class="flex text-sm">
       <button
-        class="px-2 focus:outline-none"
+        class="px-3 focus:outline-none"
         :class="lang === 'en' && 'text-fluo-green'"
         @click="() => setLanguage('en')"
       >EN</button>
       <span class="self-center">/</span>
       <button
-        class="px-2 focus:outline-none"
+        class="px-3 focus:outline-none"
         :class="lang === 'rs' && 'text-fluo-green'"
         @click="() => setLanguage('rs')"
       >RS</button>
