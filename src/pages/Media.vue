@@ -33,7 +33,7 @@
       <li v-for="(video, i) in $page.allVideos.edges" :key="`media_video_button_${i}`">
         <button
           :class="currentVideo.title[lang] === video.node.title[lang] && 'text-fluo-green font-semibold'"
-          class="flex py-1 focus:outline-none"
+          class="flex py-2 py-3 sm:py-1 focus:outline-none"
           @click="() => setCurrentVideo(video.node)"
         >
           <svg

@@ -6,7 +6,7 @@
     <g-image 
       :alt="`${cover}`" 
       :src="require(`!!assets-loader!@omoti/${cover}.jpg`)" 
-      class="w-full border-2 border-transparent group-hover:border-fluo-green"
+      class="border-2 border-transparent group-hover:border-fluo-green"
       style="max-width: 20rem"
     />
 

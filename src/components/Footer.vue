@@ -1,7 +1,7 @@
 <template>
   <footer 
     class="fixed inset-0 z-10 flex flex-col items-center justify-center"
-    style="background-image: url(/images/wall4.png);"
+    style="background-image: url(/images/wall4.png); padding-top: calc(var(--rhodes-div-height) + 4rem)"
   >
     <svg version="1.0" xmlns="http://www.w3.org/2000/svg" class="h-40" viewBox="0 0 696.731 684">
       <path

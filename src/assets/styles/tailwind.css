@@ -2,4 +2,12 @@
 
 @tailwind components;
 
+.link {
+  @apply cursor-pointer text-fluo-green underline opacity-75;
+}
+
+.link:hover {
+  @apply opacity-100
+}
+
 @tailwind utilities;

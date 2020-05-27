@@ -8,7 +8,7 @@
       {{ pageData.node.pages.discography.title[lang] }}
     </h1>
 
-    <div class="flex flex-wrap justify-center mt-6 albums-margin-fix lg:mt-12">
+    <div class="flex flex-wrap justify-center mt-6 lg:mt-12">
       <Album
         v-for="album in $page.allDiscography.edges" 
         :key="album.node.cover"
