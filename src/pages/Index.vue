@@ -5,7 +5,7 @@
       <div class="text-center">
         <h2 class="text-2xl text-center">{{ node.pages.home.release.subtitle[lang] }}</h2>
         
-        <div class="flex flex-wrap justify-center mt-6">
+        <div class="flex flex-wrap justify-center mt-2">
           <Album
             v-for="(album, i) in $page.allDiscography.edges"
             :key="`home_latest_release_${i}`"

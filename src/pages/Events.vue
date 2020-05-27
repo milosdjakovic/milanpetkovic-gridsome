@@ -1,16 +1,11 @@
 <template>
   <Layout>
-    <div
-      v-for="(pageData, i) in $page.allSiteData.edges"
-      :key="`${pageData}_${i}`"
-    >
-      <!-- <h1 class="text-2xl">{{ pageData.node.pages.events.title[lang] }}</h1> -->
-  
+    <div v-for="(pageData, i) in $page.allSiteData.edges" :key="`${pageData}_${i}`">
       <!-- Upcoming events -->
-      <div v-if="upcomingEvents.length > 0" >
+      <div v-if="upcomingEvents.length > 0">
         <h2 class="text-3xl text-fluo-green">{{ pageData.node.pages.events.upcoming[lang] }}</h2>
-  
-        <a 
+
+        <a
           v-for="event in upcomingEvents"
           :key="`${ event.date }_${ event.time }`"
           :href="event.link"
@@ -18,20 +13,22 @@
         >
           <p class="text-xl group-hover:text-fluo-green">{{ event.place }}</p>
           <p class="text-sm font-bold text-gray-400 group-hover:text-fluo-green">{{ event.town }}</p>
-          <p class="font-bold text-fluo-green group-hover:text-gray-400">{{ new Date(`${event.date}T${event.time}Z`).toLocaleDateString(localeLang, dateOptions) }}</p>
+          <p
+            class="font-bold text-fluo-green group-hover:text-gray-400"
+          >{{ new Date(`${event.date}T${event.time}Z`).toLocaleDateString(localeLang, dateOptions) }}</p>
         </a>
       </div>
-  
+
       <!-- No upcoming events -->
       <div v-else>
         <h2 class="text-2xl text-fluo-green">{{ pageData.node.pages.events.noEvents[lang] }}</h2>
       </div>
 
       <!-- Past events -->
-      <div class="mt-12">
+      <div class="mt-6">
         <h2 class="text-2xl">{{ pageData.node.pages.events.past[lang] }}</h2>
 
-        <a 
+        <a
           v-for="event in pastEvents"
           :key="`${ event.date }_${ event.time }`"
           :href="event.link"
@@ -39,7 +36,9 @@
         >
           <p class="text-xl">{{ event.place }}</p>
           <p class="text-sm font-bold text-gray-400">{{ event.town }}</p>
-          <p class="font-bold text-fluo-green">{{ new Date(`${event.date}T${event.time}Z`).toLocaleDateString(localeLang, dateOptions) }}</p>
+          <p
+            class="font-bold text-fluo-green"
+          >{{ new Date(`${event.date}T${event.time}Z`).toLocaleDateString(localeLang, dateOptions) }}</p>
         </a>
       </div>
     </div>
@@ -51,7 +50,7 @@ import { mapState } from "vuex";
 
 export default {
   metaInfo: {
-    title: "Events",
+    title: "Events"
   },
   data: () => ({
     upcomingEvents: [],
@@ -60,8 +59,8 @@ export default {
       weekday: "long",
       year: "numeric",
       month: "long",
-      day: "numeric",
-    },
+      day: "numeric"
+    }
   }),
   computed: {
     ...mapState(["lang"]),
@@ -71,17 +70,17 @@ export default {
       }
 
       return "en";
-    },
+    }
   },
   created() {
-    this.$page.allEvents.edges.forEach((event) => {
+    this.$page.allEvents.edges.forEach(event => {
       if (new Date(`${event.node.date}T${event.node.time}Z`) > Date.now()) {
         this.upcomingEvents.push(event.node);
       } else {
         this.pastEvents.push(event.node);
       }
     });
-  },
+  }
 };
 </script>
 
