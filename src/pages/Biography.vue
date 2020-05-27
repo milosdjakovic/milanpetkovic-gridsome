@@ -1,9 +1,9 @@
 <template>
   <Layout>
     <div v-for="biography in $page.biography.edges" :key="biography.node[lang].title">
-      <h1>{{ biography.node[lang].title }}</h1>
+      <h1 class="text-2xl">{{ biography.node[lang].title }}</h1>
 
-      <div>
+      <div class="mt-4">
         <g-image
           src="~/assets/images/milan_profile.jpg"
           alt="Milan Petkovic performing"
@@ -14,12 +14,17 @@
         <p
           v-for="(paragraph, i) in biography.node[lang].content"
           :key="`bio_para_${i}`"
-        >{{paragraph}}</p>
+          class="mt-4"
+        >
+          {{paragraph}}
+        </p>
 
         <a
           href="https://sr.wikipedia.org/wiki/Milan_Petković"
-          class="underline text-fluo-green"
-        >Wikipedia</a>
+          class="inline-block mt-4 underline opacity-75 text-fluo-green hover:opacity-100"
+        >
+          Wikipedia
+        </a>
       </div>
     </div>
   </Layout>

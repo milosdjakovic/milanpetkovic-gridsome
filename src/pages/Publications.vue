@@ -1,14 +1,15 @@
 <template>
   <Layout>
     <div v-for="publication in $page.publications.edges" :key="publication.node[lang.title]">
-      <h1>{{ publication.node[lang].title }}</h1>
+      <h1 class="text-2xl">{{ publication.node[lang].title }}</h1>
 
       <a 
         v-for="article in publication.node.articles" 
         :key="article.link"
         :href="article.link"
+        class="block max-w-xl mt-8 first:mt-0 group"
       >
-        <p>{{ article.title }}</p>
+        <p class="text-lg font-semibold group-hover:text-fluo-green">{{ article.title }}</p>
         <p>{{ article.source }}</p>
       </a>
     </div>
