@@ -14,6 +14,7 @@ module.exports = function(api) {
     const VideosData = require("./src/data/videos.json");
     const PublicationsData = require("./src/data/publications.json");
     const BiographyData = require("./src/data/biography.json");
+    const Page404Data = require("./src/data/404_page_data.json");
 
     const siteData = addCollection("SiteData");
     const albums = addCollection("Discography");
@@ -21,6 +22,7 @@ module.exports = function(api) {
     const videos = addCollection("Videos");
     const publications = addCollection("Publications");
     const biography = addCollection("Biography");
+    const page404 = addCollection("Page404");
 
     siteData.addNode(SiteData);
 
@@ -39,6 +41,8 @@ module.exports = function(api) {
     publications.addNode(PublicationsData);
 
     biography.addNode(BiographyData);
+
+    page404.addNode(Page404Data)
 
   });
 
