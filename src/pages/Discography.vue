@@ -1,16 +1,22 @@
 <template>
   <Layout>
-    <h1 v-for="(pageData, i) in $page.allSiteData.edges" :key="`${pageData}_${i}`">
+    <h1 
+      v-for="(pageData, i) in $page.allSiteData.edges" 
+      :key="`${pageData}_${i}`"
+      class="text-2xl text-center lg:hidden"
+    >
       {{ pageData.node.pages.discography.title[lang] }}
     </h1>
 
-    <Album
-      v-for="album in $page.allDiscography.edges" 
-      :key="album.node.cover"
-      :cover="album.node.cover"
-      :title="album.node[lang].title"
-      @click="() => setAlbum(album.node)"
-    />
+    <div class="flex flex-wrap justify-center mt-6 albums-margin-fix lg:mt-12">
+      <Album
+        v-for="album in $page.allDiscography.edges" 
+        :key="album.node.cover"
+        :cover="album.node.cover"
+        :title="album.node[lang].title"
+        @click="() => setAlbum(album.node)"
+      />
+    </div>
   </Layout>
 </template>
 
