@@ -4,37 +4,42 @@
       v-for="(pageData, i) in $page.allSiteData.edges"
       :key="`${pageData}_${i}`"
     >
-      <h1>{{ pageData.node.pages.events.title[lang] }}</h1>
+      <!-- <h1 class="text-2xl">{{ pageData.node.pages.events.title[lang] }}</h1> -->
   
+      <!-- Upcoming events -->
       <div v-if="upcomingEvents.length > 0" >
-        <h2>{{ pageData.node.pages.events.upcoming[lang] }}</h2>
+        <h2 class="text-3xl text-fluo-green">{{ pageData.node.pages.events.upcoming[lang] }}</h2>
   
         <a 
           v-for="event in upcomingEvents"
           :key="`${ event.date }_${ event.time }`"
-          href=""
+          :href="event.link"
+          class="block pb-3 mt-4 transition-colors transition-shadow duration-300 ease-in-out cursor-pointer group hover:shadow-bottom-fluo"
         >
-          <p>{{ event.place }}</p>
-          <p>{{ event.town }}</p>
-          <p>{{ new Date(`${event.date}T${event.time}Z`).toLocaleDateString(localeLang, dateOptions) }}</p>
+          <p class="text-xl group-hover:text-fluo-green">{{ event.place }}</p>
+          <p class="text-sm font-bold text-gray-400 group-hover:text-fluo-green">{{ event.town }}</p>
+          <p class="font-bold text-fluo-green group-hover:text-gray-400">{{ new Date(`${event.date}T${event.time}Z`).toLocaleDateString(localeLang, dateOptions) }}</p>
         </a>
       </div>
   
+      <!-- No upcoming events -->
       <div v-else>
-        <h2>{{ pageData.node.pages.events.noEvents[lang] }}</h2>
+        <h2 class="text-2xl text-fluo-green">{{ pageData.node.pages.events.noEvents[lang] }}</h2>
       </div>
 
-      <div>
-        <h2>{{ pageData.node.pages.events.past[lang] }}</h2>
+      <!-- Past events -->
+      <div class="mt-12">
+        <h2 class="text-2xl">{{ pageData.node.pages.events.past[lang] }}</h2>
 
         <a 
           v-for="event in pastEvents"
           :key="`${ event.date }_${ event.time }`"
-          href=""
+          :href="event.link"
+          class="block pb-3 mt-4 transition-colors transition-shadow duration-300 ease-in-out opacity-50 cursor-pointer hover:opacity-100 hover:shadow-bottom-fluo"
         >
-          <p>{{ event.place }}</p>
-          <p>{{ event.town }}</p>
-          <p>{{ new Date(`${event.date}T${event.time}Z`).toLocaleDateString(localeLang, dateOptions) }}</p>
+          <p class="text-xl">{{ event.place }}</p>
+          <p class="text-sm font-bold text-gray-400">{{ event.town }}</p>
+          <p class="font-bold text-fluo-green">{{ new Date(`${event.date}T${event.time}Z`).toLocaleDateString(localeLang, dateOptions) }}</p>
         </a>
       </div>
     </div>

@@ -82,12 +82,13 @@ export default {
       this.currentVideo.title = title
       this.currentVideo.link = link
       window.scrollY = 0
-
+      
       window.scrollTo({
         top: 0,
         behavior: 'smooth'
       });
     }
+
   },
   computed: {
     ...mapState(["lang"])
