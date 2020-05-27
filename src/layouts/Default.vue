@@ -10,11 +10,14 @@
       <Header />
     </div>
 
-    <main 
+    <main
       class="relative z-20 min-h-screen pt-12 shadow-lg md:pt-16"
-      style="background-image: url(/images/dark_leather.png); margin-bottom: calc(100vh - 4rem)"
+      style="background-image: url(/images/dark_leather.png); margin-bottom: calc(100vh - var(--rhodes-div-height) - 4rem)"
     >
       <slot />
+
+      <!-- Rhodes keys -->
+      <div class="bg-repeat-x rhodes"/>
     </main>
 
     <Footer />
@@ -22,9 +25,9 @@
 </template>
 
 <script>
-import AlbumOverlay from '../components/AlbumOverlay.vue'
-import Header from '../components/Header.vue';
-import Footer from '../components/Footer.vue';
+import AlbumOverlay from "../components/AlbumOverlay.vue";
+import Header from "../components/Header.vue";
+import Footer from "../components/Footer.vue";
 
 export default {
   components: {
@@ -52,3 +55,11 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.rhodes {
+  background-image: url(/images/rhodes_keys.svg);
+  background-size: var(--rhodes-image-size);
+  height: var(--rhodes-div-height);
+}
+</style>

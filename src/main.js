@@ -4,6 +4,7 @@
 import Vuex from 'vuex';
 import DefaultLayout from '~/layouts/Default.vue'
 import '~/assets/styles/output.css'
+import '~/assets/styles/custom-properties.css'
 
 export default function (Vue, { router, head, isClient, appOptions }) {
   Vue.use(Vuex)
