@@ -1,5 +1,7 @@
 <template>
   <div class="text-gray-100">
+    <MobileNav />
+    
     <AlbumOverlay />
 
     <div
@@ -28,12 +30,14 @@
 </template>
 
 <script>
+import MobileNav from "../components/MobileNav.vue";
 import AlbumOverlay from "../components/AlbumOverlay.vue";
 import Header from "../components/Header.vue";
 import Footer from "../components/Footer.vue";
 
 export default {
   components: {
+    MobileNav,
     AlbumOverlay,
     Header,
     Footer
