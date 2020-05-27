@@ -10,7 +10,7 @@
         class="block max-w-xl mt-8 first:mt-0 group"
       >
         <p class="text-lg font-semibold group-hover:text-fluo-green">{{ article.title }}</p>
-        <p>{{ article.source }}</p>
+        <p class="underline">{{ article.source }}</p>
       </a>
     </div>
   </Layout>

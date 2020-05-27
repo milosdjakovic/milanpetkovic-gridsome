@@ -1,8 +1,10 @@
 <template>
   <Layout>
+    <!-- Video section -->
     <div v-for="(video, i) in $page.lastVideo.edges" :key="`media_video_${i}`">
       <h1 class="text-2xl">{{ currentVideo.title[lang] }}</h1>
 
+      <!-- Video -->
       <div class="relative mt-4" style="width: 100%; height: 0; padding-bottom: 56.25%;">
         <iframe
           title="test"
@@ -18,21 +20,21 @@
       </div>
     </div>
 
-    <h3 
+    <!-- Playlist title -->
+    <h3
       v-for="(playlistTitle, i) in $page.allSiteData.edges"
       :key="`media_playlist_title_${i}`"
       class="mt-8 text-lg font-semibold"
       style="margin-left: calc(24px + 0.5rem)"
-    >
-      {{ playlistTitle.node.pages.media.playlist[lang] }}:
-    </h3>
+    >{{ playlistTitle.node.pages.media.playlist[lang] }}:</h3>
 
+    <!-- Playlist -->
     <ul class="mt-4">
       <li v-for="(video, i) in $page.allVideos.edges" :key="`media_video_button_${i}`">
         <button
           :class="currentVideo.title[lang] === video.node.title[lang] && 'text-fluo-green font-semibold'"
           class="flex py-1 focus:outline-none"
-          @click="currentVideo = {title: video.node.title, link: video.node.link}"
+          @click="() => setCurrentVideo(video.node)"
         >
           <svg
             v-if="currentVideo.title[lang] === video.node.title[lang]"
@@ -75,6 +77,18 @@ export default {
       link: null
     }
   }),
+  methods: {
+    setCurrentVideo({title, link}) {
+      this.currentVideo.title = title
+      this.currentVideo.link = link
+      window.scrollY = 0
+
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+  },
   computed: {
     ...mapState(["lang"])
   },
