@@ -7,7 +7,7 @@
     >
       <div 
         class="flex flex-col max-h-screen pt-4 pb-8 rounded-md shadow-lg md:pb-12 md:pt-6"
-        style="background-image: url(/images/dark_leather.png);"
+        style="background-image: url(./images/dark_leather.png);"
         @click.stop
       >
         <button

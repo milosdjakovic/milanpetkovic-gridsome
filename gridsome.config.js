@@ -5,10 +5,10 @@
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
 module.exports = {
-  siteName: 'Milan Petković',
+  siteName: "Milan Petković",
   plugins: [],
-  chainWebpack: config => {
-    config.resolve.alias.set('@omoti', '@/assets/omoti')
+  chainWebpack: (config) => {
+    config.resolve.alias.set("@omoti", "@/assets/omoti");
   },
-  pathPrefix: '/milanpetkovic'
-}
+  pathPrefix: "/milanpetkovic",
+};

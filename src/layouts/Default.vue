@@ -1,7 +1,7 @@
 <template>
   <div 
     class="text-gray-100"
-    style="background-image: url(/images/dark_leather.png);"
+    style="background-image: url(./images/dark_leather.png);"
   >
     <MobileNav />
     
@@ -19,7 +19,7 @@
       <div>
         <main
           class="relative z-20 flex flex-col text-gray-100 shadow-lg"
-          style="background-image: url(/images/dark_leather.png); margin-bottom: calc(100vh - var(--rhodes-div-height) - 4rem)"
+          style="background-image: url(./images/dark_leather.png); margin-bottom: calc(100vh - var(--rhodes-div-height) - 4rem)"
         >
           <div class="self-center w-full max-w-6xl min-h-screen px-6 pt-16 pb-12 md:pb-20 md:pt-24">
             <!-- Page content -->
@@ -57,7 +57,7 @@ export default {
     handleScroll() {
       if (window.scrollY > 0) {
         this.notOnTop = "border-gray-800 shadow-2xl";
-        this.headerBg = "background-image: url(/images/dark_leather.png);";
+        this.headerBg = "background-image: url(./images/dark_leather.png);";
       } else {
         this.notOnTop = "border-transparent";
         this.headerBg = "";
@@ -75,7 +75,7 @@ export default {
 
 <style scoped>
 .rhodes {
-  background-image: url(/images/rhodes_keys.svg);
+  background-image: url(./images/rhodes_keys.svg);
   background-size: var(--rhodes-image-size);
   height: var(--rhodes-div-height);
 }

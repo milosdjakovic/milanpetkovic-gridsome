@@ -27,7 +27,16 @@ export default function (Vue, { router, head, isClient, appOptions }) {
       }
     }
   })
+  
+  head.meta.push({
+    property: 'og:title',
+    content: 'Milan Petković'
+  })
 
+  head.meta.push({
+    property: 'og:image',
+    content: 'http://milanpetkovic.com/images/bird-banner.jpg'
+  })
   // Set default layout as a global component
   Vue.component('Layout', DefaultLayout)
 }
