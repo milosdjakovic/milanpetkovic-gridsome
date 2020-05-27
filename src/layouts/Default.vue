@@ -27,7 +27,10 @@
           </div>
     
           <!-- Rhodes keys -->
-          <div class="bg-repeat-x rhodes" />
+          <div 
+            class="bg-repeat-x rhodes" 
+            style="background-image: url(./images/rhodes_keys.svg);"
+          />
         </main>
   
       <Footer />
@@ -75,7 +78,6 @@ export default {
 
 <style scoped>
 .rhodes {
-  background-image: url(./images/rhodes_keys.svg);
   background-size: var(--rhodes-image-size);
   height: var(--rhodes-div-height);
 }

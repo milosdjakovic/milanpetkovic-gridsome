@@ -81,10 +81,10 @@ export default {
     setCurrentVideo({title, link}) {
       this.currentVideo.title = title
       this.currentVideo.link = link
-      window.scrollY = 0
+      // window.scrollY = 80
       
       window.scrollTo({
-        top: 0,
+        top: 20,
         behavior: 'smooth'
       });
     }
