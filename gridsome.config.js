@@ -10,5 +10,5 @@ module.exports = {
   chainWebpack: (config) => {
     config.resolve.alias.set("@omoti", "@/assets/omoti");
   },
-  pathPrefix: "/milanpetkovic",
+  // pathPrefix: "/milanpetkovic",
 };

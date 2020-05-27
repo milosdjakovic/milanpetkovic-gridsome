@@ -11,7 +11,7 @@ export default function (Vue, { router, head, isClient, appOptions }) {
 
   appOptions.store = new Vuex.Store({
     state: {
-      lang: 'rs',
+      lang: 'en',
       mobileMenuHidden: true,
       selectedAlbum: null
     },
