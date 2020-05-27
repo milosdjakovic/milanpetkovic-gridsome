@@ -4,20 +4,23 @@
 
     <div
       :class="notOnTop"
-      class="fixed inset-x-0 z-30 flex justify-center h-12 border-b-2 border-transparent md:h-16"
+      class="fixed inset-x-0 top-0 z-30 flex justify-center h-12 border-b-2 border-transparent md:h-16"
       style="background-image: url(/images/dark_leather.png);"
     >
       <Header />
     </div>
 
     <main
-      class="relative z-20 min-h-screen pt-12 shadow-lg md:pt-16"
+      class="relative z-20 flex flex-col text-gray-100 shadow-lg"
       style="background-image: url(/images/dark_leather.png); margin-bottom: calc(100vh - var(--rhodes-div-height) - 4rem)"
     >
-      <slot />
+      <div class="self-center w-full max-w-6xl min-h-screen px-6 pt-16 pb-12 md:pb-20 md:pt-24">
+        <!-- Page content -->
+        <slot />
+      </div>
 
       <!-- Rhodes keys -->
-      <div class="bg-repeat-x rhodes"/>
+      <div class="bg-repeat-x rhodes" />
     </main>
 
     <Footer />

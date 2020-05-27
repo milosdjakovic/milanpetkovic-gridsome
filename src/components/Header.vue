@@ -35,7 +35,7 @@
           >RS</button>
 
           <button 
-            class="flex justify-center w-10 focus:outline-none hover:text-fluo-green"
+            class="flex justify-center w-10 lg:hidden focus:outline-none hover:text-fluo-green"
             @click="toggleMobileMenu"
           >
             <svg
