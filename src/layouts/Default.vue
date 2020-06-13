@@ -40,6 +40,8 @@
 </template>
 
 <script>
+import gsap from 'gsap';
+
 import MobileNav from "../components/MobileNav.vue";
 import AlbumOverlay from "../components/AlbumOverlay.vue";
 import Header from "../components/Header.vue";
