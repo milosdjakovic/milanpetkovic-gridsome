@@ -8,7 +8,7 @@
     "build:css": "npx tailwindcss build src/assets/styles/tailwind.css -o src/assets/styles/output.css"
   },
   "dependencies": {
-    "gridsome": "^0.7.0",
+    "gridsome": "^0.7.17",
     "tailwindcss": "^1.4.6",
     "vuex": "^3.4.0"
   }
