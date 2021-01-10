@@ -1,7 +1,7 @@
 <template>
   <div
     class="flex flex-col items-center h-screen text-gray-100"
-    style="background-image: url(./images/dark_leather.png);"
+    style="background-image: url(/images/dark_leather.png);"
   >
     <div class="flex justify-end w-full h-16 max-w-6xl px-6 text-sm">
       <button

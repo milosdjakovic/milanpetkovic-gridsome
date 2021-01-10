@@ -3,7 +3,7 @@
     <nav
       v-show="!mobileMenuHidden"
       class="fixed inset-0 z-30 flex items-center justify-center overflow-y-auto lg:hidden"
-      style="background-image: url(./images/dark_leather.png);"
+      style="background-image: url(/images/dark_leather.png);"
     >
       <div
         v-for="(data, i) in $static.allSiteData.edges"
