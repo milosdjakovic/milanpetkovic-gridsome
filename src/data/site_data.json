@@ -75,6 +75,10 @@
       "playlist": {
         "rs": "Lista pesama",
         "en": "Playlist"
+      },
+      "youtube": {
+        "rs": "Oficijalni YouTube kanal",
+        "en": "Official YouTube Channel"
       }
     },
     "biography": {

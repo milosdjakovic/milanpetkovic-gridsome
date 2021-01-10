@@ -1,7 +1,7 @@
 <template>
   <div 
     class="text-gray-100"
-    style="background-image: url(./images/dark_leather.png);"
+    style="background-image: url(/images/dark_leather.png);"
   >
     <MobileNav />
     

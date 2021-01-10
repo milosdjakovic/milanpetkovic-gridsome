@@ -1,5 +1,26 @@
 [  
   {
+    "date": "2020-09-17",
+    "time": "20:00",
+    "place": "Nišville Jazz Festival",
+    "town": "Niš",
+    "link": "http://nisville.com/en/nisville-stages-2/open-stage/"
+  },
+  {
+    "date": "2020-09-12",
+    "time": "21:00",
+    "place": "The Riff",
+    "town": "Vranje",
+    "link": "https://www.facebook.com/events/607845553239248"
+  },
+  {
+    "date": "2020-07-06",
+    "time": "14:00",
+    "place": "Virtual Rečica Fair Festival",
+    "town": "Aleksinac",
+    "link": "https://www.facebook.com/events/2792271884166218/"
+  },
+  {
     "date": "2019-12-28",
     "time": "22:00",
     "place": "New Pressing",

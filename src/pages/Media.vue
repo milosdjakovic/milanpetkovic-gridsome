@@ -5,7 +5,10 @@
       <h1 class="text-2xl">{{ currentVideo.title[lang] }}</h1>
 
       <!-- Video -->
-      <div class="relative mt-4" style="width: 100%; height: 0; padding-bottom: 56.25%;">
+      <div
+        class="relative mt-4"
+        style="width: 100%; height: 0; padding-bottom: 56.25%;"
+      >
         <iframe
           title="test"
           width="560"
@@ -23,23 +26,30 @@
     <!-- Playlist title -->
     <h3
       v-for="(playlistTitle, i) in $page.allSiteData.edges"
-      :key="`media_playlist_title_${i}`"
+      :key="`youtube_chanel_${i}`"
       class="mt-8 text-lg font-semibold"
-      style="margin-left: calc(24px + 0.5rem)"
-    >{{ playlistTitle.node.pages.media.playlist[lang] }}:</h3>
+    >
+      {{ playlistTitle.node.pages.media.playlist[lang] }}:
+    </h3>
 
     <!-- Playlist -->
-    <ul class="mt-4">
-      <li v-for="(video, i) in $page.allVideos.edges" :key="`media_video_button_${i}`">
+    <ul class="mt-4 mb-12">
+      <li
+        v-for="(video, i) in $page.allVideos.edges"
+        :key="`media_video_button_${i}`"
+      >
         <button
-          :class="currentVideo.title[lang] === video.node.title[lang] && 'text-fluo-green font-semibold'"
-          class="flex py-2 py-3 sm:py-1 focus:outline-none"
+          :class="
+            currentVideo.title[lang] === video.node.title[lang] &&
+              'text-fluo-green font-semibold'
+          "
+          class="flex flex-row-reverse py-2 xl:flex-row sm:py-1 focus:outline-none"
           @click="() => setCurrentVideo(video.node)"
         >
           <svg
             v-if="currentVideo.title[lang] === video.node.title[lang]"
             xmlns="http://www.w3.org/2000/svg"
-            class="icon icon-tabler icon-tabler-volume"
+            class="xl:-ml-8 xl:mr-2 icon icon-tabler icon-tabler-volume"
             width="24"
             height="24"
             stroke-width="2"
@@ -55,12 +65,29 @@
           </svg>
 
           <span
-            class="ml-2"
-            :style="currentVideo.title[lang] !== video.node.title[lang] && 'margin-left: calc(24px + 0.5rem)'"
-          >{{ video.node.title[lang] }}</span>
+            class="mr-2 xl:mr-0"
+            :class="currentVideo.title[lang] !== video.node.title[lang] && ''"
+          >
+            <!-- :style="
+              currentVideo.title[lang] !== video.node.title[lang] &&
+                'margin-left: calc(24px + 0.5rem)'
+            " -->
+            {{ video.node.title[lang] }}
+          </span>
         </button>
       </li>
     </ul>
+
+    <!-- Official Youtube Channel -->
+    <a
+      v-for="(channel, i) in $page.allSiteData.edges"
+      :key="`media_playlist_title_${i}`"
+      class="link"
+      href="https://www.youtube.com/user/MilanPetkovicTrio/videos"
+      target="_blank"
+    >
+      {{ channel.node.pages.media.youtube[lang] }}
+    </a>
   </Layout>
 </template>
 
@@ -69,36 +96,35 @@ import { mapState } from "vuex";
 
 export default {
   metaInfo: {
-    title: "Discography"
+    title: "Discography",
   },
   data: () => ({
     currentVideo: {
       title: null,
-      link: null
-    }
+      link: null,
+    },
   }),
   methods: {
-    setCurrentVideo({title, link}) {
-      this.currentVideo.title = title
-      this.currentVideo.link = link
+    setCurrentVideo({ title, link }) {
+      this.currentVideo.title = title;
+      this.currentVideo.link = link;
       // window.scrollY = 80
-      
+
       window.scrollTo({
         top: 20,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
-    }
-
+    },
   },
   computed: {
-    ...mapState(["lang"])
+    ...mapState(["lang"]),
   },
   created() {
-    this.$page.lastVideo.edges.forEach(video => {
+    this.$page.lastVideo.edges.forEach((video) => {
       this.currentVideo.title = video.node.title;
       this.currentVideo.link = video.node.link;
     });
-  }
+  },
 };
 </script>
 
@@ -132,6 +158,10 @@ query {
         pages {
           media {
             playlist {
+              rs
+              en
+            }
+            youtube {
               rs
               en
             }
