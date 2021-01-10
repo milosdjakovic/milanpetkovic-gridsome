@@ -35,7 +35,7 @@
       >RS</button>
 
       <button 
-        class="flex justify-center w-10 lg:hidden focus:outline-none hover:text-fluo-green"
+        class="flex items-center justify-center w-10 lg:hidden focus:outline-none hover:text-fluo-green"
         @click="toggleMobileMenu"
       >
         <svg
@@ -52,6 +52,7 @@
           <line x1="4" y1="8" x2="20" y2="8" />
           <line x1="4" y1="16" x2="20" y2="16" />
         </svg>
+
         <svg
           v-else
           xmlns="http://www.w3.org/2000/svg"
