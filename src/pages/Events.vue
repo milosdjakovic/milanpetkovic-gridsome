@@ -49,7 +49,7 @@
           v-for="event in pastEvents"
           :key="`${event.date}_${event.time}`"
           :href="event.link"
-          class="block pb-3 mt-4 transition-colors transition-shadow duration-300 ease-in-out opacity-50 cursor-pointer hover:opacity-100 hover:shadow-bottom-fluo"
+          class="block pb-3 mt-4 transition-colors duration-300 ease-in-out opacity-50 cursor-pointer hover:opacity-100 hover:shadow-bottom-fluo"
         >
           <p class="text-xl">{{ event.place }}</p>
           <p class="text-sm font-bold text-gray-400">{{ event.town }}</p>

@@ -31,7 +31,7 @@
             v-for="event in upcomingEvents" 
             :key="`${ event.date }_${ event.time }`"
             :href="event.link"
-            class="block pb-3 mt-4 transition-colors transition-shadow duration-300 ease-in-out cursor-pointer group"
+            class="block pb-3 mt-4 transition-colors duration-300 ease-in-out cursor-pointer group"
           >
             <p class="text-xl group-hover:text-fluo-green">{{ event.place }}</p>
             <p class="text-sm font-bold text-gray-400 group-hover:text-fluo-green">{{ event.town }}</p>
