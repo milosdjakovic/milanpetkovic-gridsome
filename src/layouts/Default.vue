@@ -29,7 +29,7 @@
           <!-- Rhodes keys -->
           <div 
             class="bg-repeat-x rhodes" 
-            style="background-image: url(./images/rhodes_keys.svg);"
+            style="background-image: url(/images/rhodes_keys.svg);"
           />
         </main>
   

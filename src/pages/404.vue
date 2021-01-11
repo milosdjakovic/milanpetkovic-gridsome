@@ -8,16 +8,21 @@
         class="px-3 focus:outline-none"
         :class="lang === 'en' && 'text-fluo-green'"
         @click="() => setLanguage('en')"
-      >EN</button>
+      >
+        EN
+      </button>
       <span class="self-center">/</span>
       <button
         class="px-3 focus:outline-none"
         :class="lang === 'rs' && 'text-fluo-green'"
         @click="() => setLanguage('rs')"
-      >RS</button>
+      >
+        RS
+      </button>
     </div>
 
-    <div
+    <!-- 404 page needs to be fixed -->
+    <!-- <div
       v-for="(data, i) in $page.allPage404.edges"
       :key="`404_page_data${i}`"
       class="flex flex-col items-start w-full max-w-6xl px-8"
@@ -29,7 +34,7 @@
       >
         {{ $page.siteData.navigation.links[lang][0] }}
       </g-link>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -38,19 +43,18 @@ import { mapState, mapMutations } from "vuex";
 
 export default {
   metaInfo: {
-    title: "404"
+    title: "404",
   },
   computed: {
-    ...mapState(["lang"])
+    ...mapState(["lang"]),
   },
   methods: {
-    ...mapMutations(["setLanguage"])
-  }
+    ...mapMutations(["setLanguage"]),
+  },
 };
 </script>
 
-<style>
-</style>
+<style></style>
 
 <page-query>
 query {
